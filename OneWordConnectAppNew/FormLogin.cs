@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.ServiceProcess;
 using System.Windows.Forms;
 
@@ -13,11 +14,13 @@ namespace OneWordConnectApp
     public partial class FormLogin : Form
     {
         UserSetting _setting;
+        List<Conference> _conferences;
         public FormLogin()
         {
             InitializeComponent();
             Initiator.Init();
             _setting = LoadConfigurations();
+            _conferences = APIHelper.GetAPIUploadList();
         }
 
         private static string GetServiceInstallPath(string serviceName)
@@ -32,8 +35,8 @@ namespace OneWordConnectApp
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //if (IsValidateUserInfo())
-            //{
+            if (IsValidateUserInfo())
+            {
                 var presenterBusinessLogic = DependencyInjector.Retrieve<PresenterBusinessLogic>();
                 var presenters = presenterBusinessLogic.GetPresenters((int)cmbConference.SelectedValue, txtPassword.Text);
                 if (presenters != null)
@@ -47,7 +50,7 @@ namespace OneWordConnectApp
                 {
                     MessageBox.Show("Please enter valid user id or password", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            //}
+            }
         }
         private UserSetting LoadConfigurations()
         {
@@ -97,9 +100,10 @@ namespace OneWordConnectApp
                 MessageBox.Show("Please enter correct password");
                 return false;
             }
-            if (string.IsNullOrEmpty(txtuser.Text))
+            var findConference = _conferences.Where(a => a.conference_id == (int)cmbConference.SelectedValue && a.conference_password == txtPassword.Text).FirstOrDefault();
+            if (findConference == null)
             {
-                MessageBox.Show("Please enter correct username");
+                MessageBox.Show("Please enter correct password");
                 return false;
             }
             return true;
@@ -126,7 +130,8 @@ namespace OneWordConnectApp
         }
         private void BindConferenceList()
         {
-            cmbConference.DataSource = APIHelper.GetAPIUploadList();
+            
+            cmbConference.DataSource = _conferences;
             cmbConference.DisplayMember = "conference_name";
             cmbConference.ValueMember = "conference_id";
         }

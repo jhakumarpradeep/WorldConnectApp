@@ -79,15 +79,18 @@ namespace OneWordConnect.DataAccess
                         var sessionDataRows = dsSession.Tables[0].Select().ToList().Where(r => Convert.ToInt32(r["id"]) == Convert.ToInt32(dataRow["session_Id"]));
                         foreach (var dr in sessionDataRows)
                         {
-                            sessions.Add(new Session()
+                            if (!sessions.Exists(a => a.SessionId == Convert.ToInt32(dr["id"])))
                             {
-                                SessionId = Convert.ToInt32(dr["id"]),
-                                SessionName = Convert.ToString(dr["name"]),
-                                SessionFullName = Convert.ToString(dr["full_name"]),
-                                //SessionStartTime = dr["start_time"]!=null? Convert.ToDateTime(dr["start_time"]):null,
-                                //SessionEndTime = Convert.ToDateTime(dr["end_time"]),
+                                sessions.Add(new Session()
+                                {
+                                    SessionId = Convert.ToInt32(dr["id"]),
+                                    SessionName = Convert.ToString(dr["name"]),
+                                    SessionFullName = Convert.ToString(dr["full_name"]),
+                                    //SessionStartTime = dr["start_time"]!=null? Convert.ToDateTime(dr["start_time"]):null,
+                                    //SessionEndTime = Convert.ToDateTime(dr["end_time"]),
 
-                            });
+                                });
+                            }
                         }
                     }
                 }

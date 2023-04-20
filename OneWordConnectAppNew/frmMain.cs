@@ -143,7 +143,8 @@ namespace OneWordConnectApp
         {
             if (cmbRoomSelection.SelectedValue.ToString() != "OneWorldConnect.DomainModel.Room")
             {
-                cmbSessionSelection.DataSource = _presenterBusinessLogic.GetSessions(Convert.ToInt32(cmbRoomSelection.SelectedValue.ToString()), cmbDateSelection.SelectedValue.ToString(), cmbTimeSelection.SelectedValue.ToString());
+                var sessions= _presenterBusinessLogic.GetSessions(Convert.ToInt32(cmbRoomSelection.SelectedValue.ToString()), cmbDateSelection.SelectedValue.ToString(), cmbTimeSelection.SelectedValue.ToString());
+                cmbSessionSelection.DataSource = sessions;
                 cmbSessionSelection.DisplayMember = "SessionFullName";
                 cmbSessionSelection.ValueMember = "SessionId";
             }

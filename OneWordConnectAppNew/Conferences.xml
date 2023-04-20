@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="yes"?>
+<ArrayOfConference>
+  <Conference>
+    <id>0</id>
+    <name>RIM</name>
+    <conference_password>RIM2023</conference_password>
+  </Conference>
+  <Conference>
+    <id>1</id>
+    <name>AFS</name>
+    <conference_password>AFS2023</conference_password>
+  </Conference>
+  <Conference>
+    <id>2</id>
+    <name>LSRS</name>
+    <conference_password>LSRS2023</conference_password>
+  </Conference>
+</ArrayOfConference>

@@ -44,6 +44,7 @@ namespace OneWordConnectApp
                 var documentBusinesssService = DependencyInjector.Retrieve<DocumentBusinesssService>();
                 var uploads=documentBusinesssService.GetUploadDocumentsInfo(Convert.ToInt32(LinkId), PresenterId, RoomId);
                 string rootPath = GetServiceRootPath();
+                bool isFileExist = false;
                 foreach (var upload in uploads)
                 {
                     if (upload.deleted == 0)
@@ -64,10 +65,15 @@ namespace OneWordConnectApp
                             
                             lnkPresentationName.Enabled = true;
                             ProgressBarVisible.Visible = false; ;
+                            isFileExist = true;
                         }
                         
                     }
                    
+                }
+                if(isFileExist==false)
+                {
+                    MessageBox.Show("Presentation file is not availabe at this time","", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch(Exception ex)

@@ -73,6 +73,8 @@ namespace OneWordConnectApp
                 }
                 if(isFileExist==false)
                 {
+                    lnkPresentationName.Enabled = true;
+                    ProgressBarVisible.Visible = false; 
                     MessageBox.Show("Presentation file is not availabe at this time","", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

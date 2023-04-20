@@ -41,6 +41,7 @@ namespace OneWordConnectApp
                 string backgroundImagePath =  _setting.UserBackGroundShowImagePath;
                 Logger.LogInfo("Main Form Load : "+backgroundImagePath);
                 this.BackgroundImage = Image.FromFile(backgroundImagePath);
+                this.panel1.Width = this.Width;
             }
             catch(Exception ex)
             {
@@ -169,6 +170,16 @@ namespace OneWordConnectApp
         {
             cmbSessionSelection.DataSource = null;
             BindRoomDropdownList();
+        }
+
+        private void btnHide_Click(object sender, EventArgs e)
+        {
+            this.panel1.Hide();
+        }
+
+        private void btnShowPanel_Click(object sender, EventArgs e)
+        {
+            this.panel1.Show();
         }
     }
 }

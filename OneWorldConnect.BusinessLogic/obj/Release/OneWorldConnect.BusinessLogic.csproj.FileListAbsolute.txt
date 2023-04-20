@@ -1,0 +1,11 @@
+C:\Users\91976\source\repos\OneWorldConnect.BusinessLogic\bin\Release\OneWorldConnect.BusinessLogic.dll
+C:\Users\91976\source\repos\OneWorldConnect.BusinessLogic\bin\Release\OneWorldConnect.BusinessLogic.pdb
+C:\Users\91976\source\repos\OneWorldConnect.BusinessLogic\bin\Release\OneWordConnect.DataAccess.dll
+C:\Users\91976\source\repos\OneWorldConnect.BusinessLogic\bin\Release\OneWorldConnect.DomainModel.dll
+C:\Users\91976\source\repos\OneWorldConnect.BusinessLogic\bin\Release\OneWordConnect.DataAccess.pdb
+C:\Users\91976\source\repos\OneWorldConnect.BusinessLogic\bin\Release\OneWorldConnect.DomainModel.pdb
+C:\Users\91976\source\repos\OneWorldConnect.BusinessLogic\obj\Release\OneWorldConnect.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\91976\source\repos\OneWorldConnect.BusinessLogic\obj\Release\OneWorldConnect.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\91976\source\repos\OneWorldConnect.BusinessLogic\obj\Release\OneWorldConnect.BusinessLogic.csproj.CopyComplete
+C:\Users\91976\source\repos\OneWorldConnect.BusinessLogic\obj\Release\OneWorldConnect.BusinessLogic.dll
+C:\Users\91976\source\repos\OneWorldConnect.BusinessLogic\obj\Release\OneWorldConnect.BusinessLogic.pdb

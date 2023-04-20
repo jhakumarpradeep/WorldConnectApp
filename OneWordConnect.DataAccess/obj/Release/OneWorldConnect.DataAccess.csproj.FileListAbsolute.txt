@@ -1,0 +1,9 @@
+C:\Users\91976\source\repos\OneWordConnect.DataAccess\bin\Release\OneWordConnect.DataAccess.dll
+C:\Users\91976\source\repos\OneWordConnect.DataAccess\bin\Release\OneWordConnect.DataAccess.pdb
+C:\Users\91976\source\repos\OneWordConnect.DataAccess\bin\Release\OneWorldConnect.DomainModel.dll
+C:\Users\91976\source\repos\OneWordConnect.DataAccess\bin\Release\OneWorldConnect.DomainModel.pdb
+C:\Users\91976\source\repos\OneWordConnect.DataAccess\obj\Release\OneWorldConnect.DataAccess.csproj.AssemblyReference.cache
+C:\Users\91976\source\repos\OneWordConnect.DataAccess\obj\Release\OneWorldConnect.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\91976\source\repos\OneWordConnect.DataAccess\obj\Release\OneWorldConnect.DataAccess.csproj.CopyComplete
+C:\Users\91976\source\repos\OneWordConnect.DataAccess\obj\Release\OneWordConnect.DataAccess.dll
+C:\Users\91976\source\repos\OneWordConnect.DataAccess\obj\Release\OneWordConnect.DataAccess.pdb

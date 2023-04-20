@@ -1,0 +1,5 @@
+C:\Users\91976\source\repos\OneWorldConnect.DomainModel\bin\Release\OneWorldConnect.DomainModel.dll
+C:\Users\91976\source\repos\OneWorldConnect.DomainModel\bin\Release\OneWorldConnect.DomainModel.pdb
+C:\Users\91976\source\repos\OneWorldConnect.DomainModel\obj\Release\OneWorldConnect.DomainModel.csproj.CoreCompileInputs.cache
+C:\Users\91976\source\repos\OneWorldConnect.DomainModel\obj\Release\OneWorldConnect.DomainModel.dll
+C:\Users\91976\source\repos\OneWorldConnect.DomainModel\obj\Release\OneWorldConnect.DomainModel.pdb

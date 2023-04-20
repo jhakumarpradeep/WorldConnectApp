@@ -1,5 +1,6 @@
 ﻿using OneWorldConnect.BusinessLogic;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -19,11 +20,14 @@ namespace OneWordConnectApp
         public int PresenterId { get; set; }
         public Label ProgressBarVisible { get; set; }
 
+        public Size FontSize { get; set; }
+
         private void PresentationList_Load(object sender, EventArgs e)
         {
             lnkPresentationName.Text = PresentationName;
             lblPresenterName.Text = PresenterName;
             lnkPresentationName.Name = LinkId;
+            lblPresenterName.Size = FontSize;
 
 
         }

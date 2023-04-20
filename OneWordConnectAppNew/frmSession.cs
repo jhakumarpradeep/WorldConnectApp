@@ -39,6 +39,7 @@ namespace OneWordConnectApp
                     PresenterId = item.presenter_id,
                     PresentationName = item.name,
                     PresenterName = prseneter.FirstName+" "+prseneter.LastName,
+                    FontSize = new System.Drawing.Size(18,18),
                     ProgressBarVisible=label1
                 });
             }

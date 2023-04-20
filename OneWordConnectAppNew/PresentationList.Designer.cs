@@ -35,10 +35,11 @@
             // lblPresenterName
             // 
             this.lblPresenterName.AutoSize = true;
-            this.lblPresenterName.Font = new System.Drawing.Font("Microsoft YaHei Light", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPresenterName.Location = new System.Drawing.Point(15, 26);
+            this.lblPresenterName.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPresenterName.Location = new System.Drawing.Point(20, 32);
+            this.lblPresenterName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPresenterName.Name = "lblPresenterName";
-            this.lblPresenterName.Size = new System.Drawing.Size(123, 16);
+            this.lblPresenterName.Size = new System.Drawing.Size(221, 27);
             this.lblPresenterName.TabIndex = 0;
             this.lblPresenterName.Text = "Automated LOI Testing";
             // 
@@ -46,10 +47,11 @@
             // 
             this.lnkPresentationName.AutoEllipsis = true;
             this.lnkPresentationName.AutoSize = true;
-            this.lnkPresentationName.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkPresentationName.Location = new System.Drawing.Point(12, 10);
+            this.lnkPresentationName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnkPresentationName.Location = new System.Drawing.Point(16, 12);
+            this.lnkPresentationName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lnkPresentationName.Name = "lnkPresentationName";
-            this.lnkPresentationName.Size = new System.Drawing.Size(115, 14);
+            this.lnkPresentationName.Size = new System.Drawing.Size(212, 23);
             this.lnkPresentationName.TabIndex = 1;
             this.lnkPresentationName.TabStop = true;
             this.lnkPresentationName.Text = "Automated LOI Testing";
@@ -58,12 +60,13 @@
             // 
             // PresentationList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lnkPresentationName);
             this.Controls.Add(this.lblPresenterName);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PresentationList";
-            this.Size = new System.Drawing.Size(875, 50);
+            this.Size = new System.Drawing.Size(1167, 62);
             this.Load += new System.EventHandler(this.PresentationList_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

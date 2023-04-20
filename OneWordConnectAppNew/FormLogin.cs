@@ -114,6 +114,8 @@ namespace OneWordConnectApp
             try
             {
                 this.BindConferenceList();
+                cmbConference.Left = txtuser.Left;
+                cmbConference.Top = txtuser.Top;
                 if (_setting.UserLogoImagePath != null)
                 {
                     pbxLoginCompanyLogo.Image = Image.FromFile(_setting.UserLogoImagePath);

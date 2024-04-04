@@ -16,9 +16,9 @@ namespace OneWorldConnect.BusinessLogic
         {
             _documentRepository = documentRepository;
         }
-        public List<Upload> GetUploadDocumentsInfo(int presentationId, int presenter, int roomId)
+        public List<Upload> GetUploadDocumentsInfo(int presentationId, int presenter, int roomId, string conferenceName)
         {
-            return _documentRepository.GetUploadDocumentsInfo(presentationId, presenter, roomId);
+            return _documentRepository.GetUploadDocumentsInfo(presentationId, presenter, roomId,conferenceName);
         }
     }
 }

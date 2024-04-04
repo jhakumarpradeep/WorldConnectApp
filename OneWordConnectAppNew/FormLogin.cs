@@ -37,11 +37,11 @@ namespace OneWordConnectApp
         {
             if (IsValidateUserInfo())
             {
-                var presenterBusinessLogic = DependencyInjector.Retrieve<PresenterBusinessLogic>();
-                var presenters = presenterBusinessLogic.GetPresenters((int)cmbConference.SelectedValue, txtPassword.Text);
+                var presenterBusinessLogic = DependencyInjector.Retrieve<IPresenterBusinessLogic>();
+                var presenters = presenterBusinessLogic.GetPresenters((int)cmbConference.SelectedValue, txtPassword.Text,cmbConference.Text);
                 if (presenters != null)
                 {
-                    frmMain obj = new frmMain(presenterBusinessLogic, _setting, presenters);
+                    frmMain obj = new frmMain(presenterBusinessLogic, _setting, presenters,cmbConference.Text);
                     obj.Show();
                     this.Hide();
                     obj = null;

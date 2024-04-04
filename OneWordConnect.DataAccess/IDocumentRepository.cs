@@ -9,6 +9,6 @@ namespace OneWordConnect.DataAccess
 {
     public interface IDocumentRepository
     {
-        List<Upload> GetUploadDocumentsInfo(int presentationId, int presenter, int roomId);
+        List<Upload> GetUploadDocumentsInfo(int presentationId, int presenter, int roomId, string conferenceName);
     }
 }

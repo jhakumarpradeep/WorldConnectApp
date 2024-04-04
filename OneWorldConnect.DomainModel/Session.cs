@@ -11,8 +11,8 @@ namespace OneWorldConnect.DomainModel
         public int SessionId { get; set; }
         public string SessionName { get; set; }
         public string SessionFullName { get; set; }
-        public DateTime? SessionStartTime { get; set; }
-        public DateTime? SessionEndTime { get; set; }
-        public DateTime? PresentationStart { get; set; }
+        public string SessionStartTime { get; set; }
+        public string SessionEndTime { get; set; }
+        public DateTime? session_date { get; set; }
     }
 }

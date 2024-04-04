@@ -9,12 +9,10 @@ namespace OneWorldConnect.BusinessLogic
 {
     public interface IPresenterBusinessLogic
     {
-        IList<Presenter> GetPresenters(int conferenceId, string password);
-        List<Room> GetRoomList(string date,string time);
-        List<Session> GetSessions(int roomId, string date, string time);
-        List<Presentation> GetPresentation(int presnterId, int roomId, int sessionId, string date, string time);
-        List<string> GetDateByPresenters(List<Presenter> presenters);
-        List<string> GetTimeByPresenters(List<Presenter> presenters);
+        IList<Presenter> GetPresenters(int conferenceId, string password,string conferrence);
+        List<Room> GetRoomList(int sessionId, string conferrence);
+        List<Session> GetSessions(List<Presenter> presenters, string conferrence);
+        List<Presentation> GetPresentation(int presnterId, int roomId, int sessionId, string start_time, string end_time, string conferrence);
 
     }
 }

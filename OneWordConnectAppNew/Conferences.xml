@@ -6,12 +6,12 @@
     <conference_password>RIM2023</conference_password>
   </Conference>
   <Conference>
-    <id>1</id>
+    <id>-1</id>
     <name>AFS</name>
     <conference_password>AFS2023</conference_password>
   </Conference>
   <Conference>
-    <id>2</id>
+    <id>1</id>
     <name>LSRS</name>
     <conference_password>LSRS2023</conference_password>
   </Conference>

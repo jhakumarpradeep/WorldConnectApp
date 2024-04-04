@@ -19,6 +19,7 @@ namespace OneWordConnectApp
         public int RoomId { get; set; }
         public int PresenterId { get; set; }
         public Label ProgressBarVisible { get; set; }
+        public string ConferenceName { get; set; }
 
         public Size FontSize { get; set; }
 
@@ -46,8 +47,8 @@ namespace OneWordConnectApp
             {
                 ProgressBarVisible.Visible = true;
                 var documentBusinesssService = DependencyInjector.Retrieve<DocumentBusinesssService>();
-                var uploads=documentBusinesssService.GetUploadDocumentsInfo(Convert.ToInt32(LinkId), PresenterId, RoomId);
-                string rootPath = GetServiceRootPath();
+                var uploads=documentBusinesssService.GetUploadDocumentsInfo(Convert.ToInt32(LinkId), PresenterId, RoomId,ConferenceName);
+                string rootPath = @"C:/000 Show"; //GetServiceRootPath();
                 bool isFileExist = false;
                 foreach (var upload in uploads)
                 {
@@ -61,7 +62,7 @@ namespace OneWordConnectApp
                         pptApp.Visible = otrue;
                         pptApp.Activate();
                         Microsoft.Office.Interop.PowerPoint.Presentations ps = pptApp.Presentations;
-                        string actualFilePath = rootPath + @"\doc_upload\" + upload.presenter_id + @"\" + System.IO.Path.GetFileName(upload.file_path);
+                        string actualFilePath = rootPath + @"\doc_upload\" + ConferenceName + @"\" + upload.presenter_id + @"\" + System.IO.Path.GetFileName(upload.file_path);
                         Logger.LogInfo("Opening file from Path : " + actualFilePath);
                         if (File.Exists(actualFilePath))
                         {

@@ -8,6 +8,6 @@ namespace OneWorldConnect.BusinessLogic
 {
     public interface IDocumentBusinesssService
     {
-        List<Upload> GetUploadDocumentsInfo(int presentationId, int presenter, int roomId);
+        List<Upload> GetUploadDocumentsInfo(int presentationId, int presenter, int roomId,string conferenceName);
     }
 }

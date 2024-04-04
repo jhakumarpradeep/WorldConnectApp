@@ -13,9 +13,9 @@ namespace OneWordConnect.DataAccess
     public class DocumentRepository : IDocumentRepository
     {
         private readonly string connectionString = DBHelper.GetConnection;
-        public List<Upload> GetUploadDocumentsInfo(int presentationId,int presenter, int roomId)
+        public List<Upload> GetUploadDocumentsInfo(int presentationId,int presenter, int roomId, string conferenceName)
         {
-            string filePath = GetDataFilePath("Uploads.xml");
+            string filePath = GetDataFilePath("Uploads.xml", conferenceName);
             List<Upload> uploads = new List<Upload>();
             DataSet ds = new DataSet();
             ds.ReadXml(filePath);
@@ -32,14 +32,14 @@ namespace OneWordConnect.DataAccess
             }
             return uploads;
         }
-        private static string GetDataFilePath(string fileName)
+        private static string GetDataFilePath(string fileName, string conferenceName)
         {
             string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
             string configFilePath = System.IO.Path.Combine(strWorkPath, "ApplicationSetting.xml");
             System.Xml.Linq.XElement xElement = System.Xml.Linq.XElement.Load(configFilePath);
             var dbConnectionFilePath = xElement.Element("DbConnectionFilePath");
-            string filePath = dbConnectionFilePath.Value + "/" + "DataFiles" + "//" + fileName;
+            string filePath = dbConnectionFilePath.Value + "/" + "DataFiles/" + conferenceName + "//" + fileName;
             return filePath;
         }
     }

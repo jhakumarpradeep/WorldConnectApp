@@ -17,24 +17,26 @@ namespace OneWordConnectApp
         UserSetting _setting;
         Presenter _presenter;
         IList<Presenter> _presenters;
-        public frmMain(IPresenterBusinessLogic presenterBusinessLogic,UserSetting setting, IList<Presenter> presenters)
+        IList<Session> _sessions;
+        string _conferenceName;
+        public frmMain(IPresenterBusinessLogic presenterBusinessLogic,UserSetting setting, IList<Presenter> presenters,string conferenceName)
         {
             InitializeComponent();
             _presenterBusinessLogic = presenterBusinessLogic;
             _userSettingBusinessService = DependencyInjector.Retrieve<IUserSettingBusinessService>();
             _setting = setting;
             _presenters = presenters;
+            _conferenceName = conferenceName;
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
             try
             {
+                _sessions= _presenterBusinessLogic.GetSessions(_presenters.ToList(), _conferenceName);
                 this.BindDateSelection();
-                this.BindTimeSelection();
+                this.BindSessionList();
                 this.BindRoomDropdownList();
-                //this.BindSessionList();
-                //this. BindSessionList(int roomId)
                 string appPath = _setting.UserLogoImagePath;
                 lblLogeedInUser.Text = _presenters.Select(a=>a.conference_name).FirstOrDefault();
                 pbxMainCompnyLogo.Image = Image.FromFile(appPath);
@@ -50,20 +52,22 @@ namespace OneWordConnectApp
         }
         private void BindDateSelection()
         {
-            var dates = _presenterBusinessLogic.GetDateByPresenters(_presenters.ToList());
-            cmbDateSelection.DataSource = dates.Distinct().ToList();
+            cmbDateSelection.DataSource = _sessions.Select(a=>a.session_date).Distinct().ToList();
         }
         private void BindTimeSelection()
         {
-            var times = _presenterBusinessLogic.GetTimeByPresenters(_presenters.ToList());
-            cmbTimeSelection.DataSource = times.Distinct().ToList();
+            if (!cmbSessionSelection.SelectedValue.ToString().Equals("OneWorldConnect.DomainModel.Session"))
+                cmbTimeSelection.DataSource = _sessions.ToList().Where(a => a.SessionId == (int)cmbSessionSelection.SelectedValue).Select(a => a.SessionStartTime).ToList();
         }
         private void BindRoomDropdownList()
         {
-            var rooms = _presenterBusinessLogic.GetRoomList(cmbDateSelection.SelectedValue.ToString(), cmbTimeSelection.SelectedValue.ToString()).ToList();
-            cmbRoomSelection.DataSource = rooms.Distinct().ToList();
-            cmbRoomSelection.DisplayMember = "RoomName";
-            cmbRoomSelection.ValueMember = "RoomId";
+            if (!cmbSessionSelection.SelectedValue.ToString().Equals("OneWorldConnect.DomainModel.Session"))
+            {
+                var rooms = _presenterBusinessLogic.GetRoomList((int)cmbSessionSelection.SelectedValue, _conferenceName).ToList();
+                cmbRoomSelection.DataSource = rooms.Distinct().ToList();
+                cmbRoomSelection.DisplayMember = "RoomName";
+                cmbRoomSelection.ValueMember = "RoomId";
+            }
         }
 
         private void btnUserSetting_Click(object sender, EventArgs e)
@@ -89,18 +93,19 @@ namespace OneWordConnectApp
         private void btnSessionStart_Click(object sender, EventArgs e)
         {
             var _myForm = (frmSession)Application.OpenForms["frmSession"];
+            var session = _sessions.ToList().First(a => a.SessionId == (int)cmbSessionSelection.SelectedValue);
             if (_myForm == null)
             {
-               var presentations= _presenterBusinessLogic.GetPresentation(0, (int)cmbRoomSelection.SelectedValue, (int)cmbSessionSelection.SelectedValue,cmbDateSelection.SelectedValue.ToString(),cmbTimeSelection.SelectedValue.ToString());
-                _myForm = new frmSession(presentations,_presenters.ToList());
+               var presentations= _presenterBusinessLogic.GetPresentation(0, (int)cmbRoomSelection.SelectedValue, session.SessionId,session.SessionStartTime,session.SessionEndTime, _conferenceName);
+                _myForm = new frmSession(presentations,_presenters.ToList(), _conferenceName);
                 _myForm.MdiParent = this;
                 _myForm.StartPosition = FormStartPosition.CenterScreen;
             }
             else
             {
                 _myForm.Close();
-                var presentations = _presenterBusinessLogic.GetPresentation(0, (int)cmbRoomSelection.SelectedValue, (int)cmbSessionSelection.SelectedValue, cmbDateSelection.SelectedValue.ToString(), cmbTimeSelection.SelectedValue.ToString());
-                _myForm = new frmSession(presentations, _presenters.ToList());
+                var presentations = _presenterBusinessLogic.GetPresentation(0, (int)cmbRoomSelection.SelectedValue, session.SessionId, session.SessionStartTime, session.SessionEndTime, _conferenceName);
+                _myForm = new frmSession(presentations, _presenters.ToList(),_conferenceName);
                 _myForm.MdiParent = this;
                 _myForm.StartPosition = FormStartPosition.CenterScreen;
             }
@@ -137,18 +142,16 @@ namespace OneWordConnectApp
 
         private void cmbRoomSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindSessionList();
+            //BindSessionList();
         }
         private void BindSessionList()
         {
-            if (cmbRoomSelection.SelectedValue.ToString() != "OneWorldConnect.DomainModel.Room")
-            {
-                var sessions= _presenterBusinessLogic.GetSessions(Convert.ToInt32(cmbRoomSelection.SelectedValue.ToString()), cmbDateSelection.SelectedValue.ToString(), cmbTimeSelection.SelectedValue.ToString());
-                cmbSessionSelection.DataSource = sessions;
-                cmbSessionSelection.DisplayMember = "SessionFullName";
-                cmbSessionSelection.ValueMember = "SessionId";
-            }
+            cmbSessionSelection.DataSource = _sessions.ToList().Where(a=>a.session_date==DateTime.Parse(cmbDateSelection.SelectedValue.ToString())).ToList();
+            cmbSessionSelection.DisplayMember = "SessionFullName";
+            cmbSessionSelection.ValueMember = "SessionId";
+         
         }
+       
         private static void StopService()
         {
             ServiceController service = new ServiceController("OneWorldConnectService", ".");
@@ -169,8 +172,8 @@ namespace OneWordConnectApp
 
         private void cmbTimeSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmbSessionSelection.DataSource = null;
-            BindRoomDropdownList();
+            ////cmbSessionSelection.DataSource = null;
+            ////BindRoomDropdownList();
         }
 
         private void btnHide_Click(object sender, EventArgs e)
@@ -181,6 +184,21 @@ namespace OneWordConnectApp
         private void btnShowPanel_Click(object sender, EventArgs e)
         {
             this.panel1.Show();
+        }
+
+        private void cmbSessionSelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindRoomDropdownList();
+        }
+
+        private void BindDateAndTimeSelection()
+        {
+           
+        }
+
+        private void cmbDateSelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.BindSessionList();
         }
     }
 }

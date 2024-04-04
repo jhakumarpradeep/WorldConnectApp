@@ -17,9 +17,9 @@ namespace OneWorldConnect.DomainModel
         public DateTime? created_on { get; set; }
         public DateTime? updated_on { get; set; }
         public int active { get; set; }
-        public DateTime? presentation_date { get; set; }
+        //public DateTime? presentation_date { get; set; }
         public string presentation_start { get; set; }
-        public string start_time { get; set; }
-        public string end_time { get; set; }
+        //public string start_time { get; set; }
+        //public string end_time { get; set; }
     }
 }

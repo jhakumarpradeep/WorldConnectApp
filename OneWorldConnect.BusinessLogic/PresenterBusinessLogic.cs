@@ -14,36 +14,28 @@ namespace OneWorldConnect.BusinessLogic
             _presenterRepository = presenterRepository;
         }
 
-        public List<string> GetDateByPresenters(List<Presenter> presenters)
+        public List<Presentation> GetPresentation(int presnterId, int roomId, int sessionId, string start_time, string end_time, string conferrence)
         {
-            return _presenterRepository.GetDateByPresenters(presenters);
+            return _presenterRepository.GetPresentation(presnterId, roomId, sessionId, start_time, end_time,conferrence);
         }
 
-        public List<Presentation> GetPresentation(int presnterId, int roomId, int sessionId, string date, string time)
-        {
-            return _presenterRepository.GetPresentation(presnterId, roomId, sessionId,date,time);
-        }
-
-        public IList<Presenter> GetPresenters(int conferenceId, string password)
+        public IList<Presenter> GetPresenters(int conferenceId, string password, string conferrence)
         {
 
-            return _presenterRepository.GetPresenters(conferenceId, password);
+            return _presenterRepository.GetPresenters(conferenceId, password,conferrence);
         }
 
-        public List<Room> GetRoomList(string date, string time)
+        public List<Room> GetRoomList(int sessionId, string conferrence)
         {
-            return _presenterRepository.GetRoomList(date,time);
+            return _presenterRepository.GetRoomList(sessionId,conferrence);
         }
 
-        public List<Session> GetSessions(int roomId, string date, string time)
+        public List<Session> GetSessions(List<Presenter> presenters, string conferrence)
         {
-            return _presenterRepository.GetSessions(roomId, date, time);
+            return _presenterRepository.GetSessions(presenters,conferrence);
         }
 
-        public List<string> GetTimeByPresenters(List<Presenter> presenters)
-        {
-            return _presenterRepository.GetTimeByPresenters(presenters);
-        }
+        
 
         private bool ISValidEmail(string emailId)
         {

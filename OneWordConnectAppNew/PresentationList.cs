@@ -48,7 +48,7 @@ namespace OneWordConnectApp
                 ProgressBarVisible.Visible = true;
                 var documentBusinesssService = DependencyInjector.Retrieve<DocumentBusinesssService>();
                 var uploads=documentBusinesssService.GetUploadDocumentsInfo(Convert.ToInt32(LinkId), PresenterId, RoomId,ConferenceName);
-                string rootPath = @"C:/000 Show"; //GetServiceRootPath();
+                string rootPath = @"C:\000 Show"; //GetServiceRootPath();
                 bool isFileExist = false;
                 foreach (var upload in uploads)
                 {
